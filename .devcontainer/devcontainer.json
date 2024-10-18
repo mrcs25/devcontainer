@@ -1,0 +1,50 @@
+{
+  "build": {
+    "context": "..",
+    "dockerfile": "Dockerfile"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "configureZshAsDefaultShell": true
+    },
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "version": "latest",
+      "dockerDashComposeVersion": "v2"
+    },
+    "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {
+      "version": "1.23.16",
+      "helm": "3.12.1",
+      "minikube": "none"
+    },
+    "ghcr.io/dhoeric/features/k9s:1": {
+      "version": "0.27.4"
+    },
+    "ghcr.io/devcontainers/features/go:1": {
+      "version": "1.20"
+    },
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.10"
+    },
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "none",
+      "installMaven": "true",
+      "mavenVersion": "3.8.6",
+      "installGradle": "true"
+    },
+  },
+  "workspaceMount": "source=${localEnv:REPOS},target=/workspace,type=bind",
+  "workspaceFolder": "/workspace",
+  "mounts": [
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}\/.kube,target=/home/vscode/.kube,type=bind",
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}\/.ssh,target=/home/vscode/.ssh,type=bind",
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}\/,target=/localhome,type=bind",
+    "source=${localEnv:REPOS}/.history,target=/home/vscode/.history,type=bind",
+    "source=${localEnv:REPOS}/.ansible,target=/home/vscode/.ansible,type=bind",
+    "source=${localEnv:REPOS}/.config,target=/home/vscode/.config,type=bind",
+    "source=${localEnv:REPOS}/.local,target=/home/vscode/.local,type=bind"
+  ],
+  "postCreateCommand": "helm plugin list | grep -q diff; [ $? != 0 ] && helm plugin install https://github.com/databus23/helm-diff",
+  "postStartCommand": "sudo bash -c \"hostname $HOSTNAME; echo $(hostname -I | cut -d' ' -f2) $HOSTNAME >> /etc/hosts\""
+}
+
+  
