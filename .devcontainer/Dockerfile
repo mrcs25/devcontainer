@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/devcontainers/base:ubuntu-22.04
+FROM mcr.microsoft.com/devcontainers/base:ubuntu-24.04
 
 RUN apt-get -q update &&\
   apt-get -qy install software-properties-common vim unzip jq

@@ -1,4 +1,5 @@
 {
+  "name": "ubuntu",
   "build": {
     "context": "..",
     "dockerfile": "Dockerfile"
@@ -12,39 +13,32 @@
       "dockerDashComposeVersion": "v2"
     },
     "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {
-      "version": "1.23.16",
-      "helm": "3.12.1",
+      "version": "1.37.0",
+      "helm": "4.2.4",
       "minikube": "none"
     },
     "ghcr.io/dhoeric/features/k9s:1": {
-      "version": "0.27.4"
+      "version": "0.51.0"
     },
     "ghcr.io/devcontainers/features/go:1": {
-      "version": "1.20"
+      "version": "1.27"
     },
     "ghcr.io/devcontainers/features/python:1": {
-      "version": "3.10"
-    },
-    "ghcr.io/devcontainers/features/java:1": {
-      "version": "none",
-      "installMaven": "true",
-      "mavenVersion": "3.8.6",
-      "installGradle": "true"
-    },
+      "version": "3.14"
+    }
   },
-  "workspaceMount": "source=${localEnv:REPOS},target=/workspace,type=bind",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
   "workspaceFolder": "/workspace",
   "mounts": [
-    "source=${localEnv:HOME}${localEnv:USERPROFILE}\/.kube,target=/home/vscode/.kube,type=bind",
-    "source=${localEnv:HOME}${localEnv:USERPROFILE}\/.ssh,target=/home/vscode/.ssh,type=bind",
-    "source=${localEnv:HOME}${localEnv:USERPROFILE}\/,target=/localhome,type=bind",
-    "source=${localEnv:REPOS}/.history,target=/home/vscode/.history,type=bind",
-    "source=${localEnv:REPOS}/.ansible,target=/home/vscode/.ansible,type=bind",
-    "source=${localEnv:REPOS}/.config,target=/home/vscode/.config,type=bind",
-    "source=${localEnv:REPOS}/.local,target=/home/vscode/.local,type=bind"
+    "source=${localEnv:HOME}\/.kube,target=/home/vscode/.kube,type=bind",
+    "source=${localEnv:HOME}\/.ssh,target=/home/vscode/.ssh,type=bind",
+    "source=${localEnv:HOME}\/,target=/localhome,type=bind",
+    "source=${localWorkspaceFolder}/.history,target=/home/vscode/.history,type=bind",
+    "source=${localWorkspaceFolder}/.ansible,target=/home/vscode/.ansible,type=bind",
+    "source=${localWorkspaceFolder}/.config,target=/home/vscode/.config,type=bind",
+    "source=${localWorkspaceFolder}/.local,target=/home/vscode/.local,type=bind"
   ],
   "postCreateCommand": "helm plugin list | grep -q diff; [ $? != 0 ] && helm plugin install https://github.com/databus23/helm-diff",
   "postStartCommand": "sudo bash -c \"hostname $HOSTNAME; echo $(hostname -I | cut -d' ' -f2) $HOSTNAME >> /etc/hosts\""
 }
-
   
