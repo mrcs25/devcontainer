@@ -1,5 +1,7 @@
 {
   "name": "ubuntu",
+//  "remoteUser": "marcus",
+//  "containerUser": "vscode",'
   "build": {
     "context": "..",
     "dockerfile": "Dockerfile"
@@ -14,31 +16,56 @@
     },
     "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {
       "version": "1.37.0",
+      //"kubectl_sha256":
       "helm": "4.2.4",
+      //"helm_sha256": 
       "minikube": "none"
     },
     "ghcr.io/dhoeric/features/k9s:1": {
       "version": "0.51.0"
     },
-    "ghcr.io/devcontainers/features/go:1": {
-      "version": "1.27"
-    },
-    "ghcr.io/devcontainers/features/python:1": {
-      "version": "3.14"
+    "ghcr.io/eitsupi/devcontainer-features/jq-likes@sha256:asdfasdf": {
+      "jqVersion": "1.8.1",
+      "yqVersion": "4.40.1",
+      "gojqVersion": "none",
+      "xqVersion": "none"
     }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "christian-kohler.path-intellisense",
+        "esbenp.prettier-vscode",
+        "eamodio.gitlens",
+        "hashicorp.terraform",
+        "mhutchie.git-graph",
+        "ms-azuretools.vscode-docker",
+        "redhat.vscode-yaml",
+        "Tim-Koehler.helm-intellisense",
+        "timonwong.shellcheck"
+      ],
+      "settings": {
+        "terraform.languageServer.enable": true,
+        "terraform.languageServer.args": [
+          "serve"
+        ]
+      }
+    }
+  },
+  "remoteEnv": {
+    "GIT_EDITOR": "vim"
   },
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
   "workspaceFolder": "/workspace",
   "mounts": [
     "source=${localEnv:HOME}\/.kube,target=/home/vscode/.kube,type=bind",
     "source=${localEnv:HOME}\/.ssh,target=/home/vscode/.ssh,type=bind",
-    "source=${localEnv:HOME}\/,target=/localhome,type=bind",
+
     "source=${localWorkspaceFolder}/.history,target=/home/vscode/.history,type=bind",
-    "source=${localWorkspaceFolder}/.ansible,target=/home/vscode/.ansible,type=bind",
     "source=${localWorkspaceFolder}/.config,target=/home/vscode/.config,type=bind",
     "source=${localWorkspaceFolder}/.local,target=/home/vscode/.local,type=bind"
   ],
-  "postCreateCommand": "helm plugin list | grep -q diff; [ $? != 0 ] && helm plugin install https://github.com/databus23/helm-diff",
-  "postStartCommand": "sudo bash -c \"hostname $HOSTNAME; echo $(hostname -I | cut -d' ' -f2) $HOSTNAME >> /etc/hosts\""
+  "postCreateCommand": "helm plugin install https://github.com/databus23/helm-diff || echo 'plugin helm-diff already installed' ",
+  //"postStartCommand": "sudo bash -c \"hostname $HOSTNAME; echo $(hostname -I | cut -d' ' -f2) $HOSTNAME >> /etc/hosts\""
 }
   
