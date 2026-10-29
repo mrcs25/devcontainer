@@ -24,7 +24,7 @@
     "ghcr.io/dhoeric/features/k9s:1": {
       "version": "0.51.0"
     },
-    "ghcr.io/eitsupi/devcontainer-features/jq-likes@sha256:asdfasdf": {
+    "ghcr.io/eitsupi/devcontainer-features/jq-likes@sha256:6a8b044f9f424097ec6d212167836b26994a76a556cbcb202084be79fe8032bd": {
       "jqVersion": "1.8.1",
       "yqVersion": "4.40.1",
       "gojqVersion": "none",
