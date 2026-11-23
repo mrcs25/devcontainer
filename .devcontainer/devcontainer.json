@@ -46,6 +46,17 @@
         "terraform.languageServer.enable": true,
         "terraform.languageServer.args": [
           "serve"
+        ],
+        "editor.bracketPairColorization.enabled": true,
+        "editor.tabSize": 2,
+        "editor.renderWhitespace": "all",
+        "files.insertFinalNewline": true,
+        "files.eol": "\n",
+        "diffEditor.ignoreTrimWhitespace": false,
+        "git.confirmSync": false,
+        "editor.rulers": [80,120],
+        "yaml.customTags": [
+          "!reference sequence"
         ]
       }
     }
