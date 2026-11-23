@@ -27,6 +27,10 @@
       "yqVersion": "4.40.1",
       "gojqVersion": "none",
       "xqVersion": "none"
+    },
+    "ghcr.io/devcontainers-extra/features/opentofu:1.0.0": {
+      // renovate: datasource=github-release depName=opentofu/opentofu
+      "version": "1.11.5"
     }
   },
   "customizations": {
