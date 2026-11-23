@@ -31,6 +31,9 @@
     "ghcr.io/devcontainers-extra/features/opentofu:1.0.0": {
       // renovate: datasource=github-release depName=opentofu/opentofu
       "version": "1.11.5"
+    },
+    "ghcr.io/olivierlemasle/devcontainers-features/jsonnet:1.0.0": {
+      // renovate: datasource=gitub-release depName=google/jsonnet
     }
   },
   "customizations": {
